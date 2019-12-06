@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.0.1",
-  "description": "PSD to HTML conversion of a portfolio page",
+  "description": "PSD to HTML conversion of a construction company page",
   "main": "index.js",
   "author": "Waseem Ahmed <codewaseem@gmail.com>",
   "license": "MIT",

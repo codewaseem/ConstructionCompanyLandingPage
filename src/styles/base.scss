@@ -1,0 +1,65 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  min-width: 100%;
+  --hero-bg-position: 0%;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+@mixin hero-overlay-background($url) {
+  color: white;
+  background: {
+    color: rgba(0, 0, 0, 0.7);
+    size: cover;
+    image: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.75)),
+      url($url);
+    repeat: no-repeat;
+    position: var(--hero-bg-position);
+  }
+}
+
+%full-page-hw {
+  height: 100vh;
+  width: 100%;
+}
+
+header {
+  @extend %full-page-hw;
+  @include hero-overlay-background(
+    "../assets/waseem-ahmed-playing-snooker.jpg"
+  );
+  display: flex;
+  padding: 1rem;
+}
+
+header > hgroup {
+  align-self: center;
+}
+header hgroup h1 {
+  font-size: 3.5rem;
+}
+
+header hgroup h4 {
+  font-size: 2rem;
+}
+
+@media (max-width: 520px) {
+  html {
+    --hero-bg-position: 70%;
+  }
+}

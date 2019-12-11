@@ -23,13 +23,49 @@
             <li><a href="#news">News</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <div class="hero-search">
+            <form onsubmit="return false;">
+              <input id="search" name="search" type="search" />
+              <label for="search">Search</label>
+            </form>
+          </div>
         </nav>
-        <div class="hero-search">
-          <form onsubmit="return false;">
-            <input id="search" name="search" type="search" />
-            <label for="search">Search</label>
-          </form>
+        <div class="nav-controller">
+          <span class="ballot-x">✘</span>
+          <span class="hamburger">☰</span>
         </div>
+        <script>
+          let navState = {
+            isOpen: false,
+            subscribers: [],
+            subscribe: function(onSubscribe) {
+              this.subscribers.push(onSubscribe);
+            },
+            toggle: function() {
+              this.isOpen = !this.isOpen;
+              this.subscribers.forEach(
+                cb => typeof cb === "function" && cb(this.isOpen)
+              );
+            }
+          };
+          let navController = document.querySelector(".nav-controller");
+          let ballotX = navController.querySelector(".ballot-x");
+          let hamburger = navController.querySelector(".hamburger");
+
+          navState.subscribe(isOpen => {
+            if (isOpen) {
+              ballotX.style.display = "block";
+              hamburger.style.display = "none";
+              console.log("ex");
+            } else {
+              ballotX.style.display = "none";
+              hamburger.style.display = "block";
+            }
+          });
+          navController.addEventListener("click", () => {
+            navState.toggle();
+          });
+        </script>
       </header>
       <div class="hero-articles-container">
         <div class="hero-articles">
